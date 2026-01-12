@@ -1,12 +1,11 @@
 mod loading;
 mod title;
 
-use bevy::{app::Plugin, ecs::resource::Resource};
+use bevy::prelude::*;
 
-#[derive(Default, PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy,Resource,Debug)]
-pub enum CurrentScreen {
+#[derive(Default, PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy,Debug, States)]
+pub enum Screen {
     #[default]
-    NoScreen,
     Loadingscreen,
     TitleScreen,
 }
@@ -16,8 +15,10 @@ pub struct ScreenPlugin;
 impl Plugin for ScreenPlugin {
     fn build(&self, app: &mut bevy::app::App) {
         app
-            .insert_resource(CurrentScreen::NoScreen)
-        
-        ;
+            .init_state::<Screen>()
+            .add_plugins((
+                loading::LoadingScreenPlugin,
+            ));
+            
     }
 }
