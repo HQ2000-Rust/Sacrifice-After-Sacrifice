@@ -1,5 +1,3 @@
-mod loading_screen;
-mod title_screen;
 mod screens;
 
 use bevy::prelude::*;
