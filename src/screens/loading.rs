@@ -19,7 +19,7 @@ pub struct LoadingScreenCamera;
 fn spawn_loading_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((DESPAWN_MARKER, LoadingScreenCamera));
     commands.spawn((DESPAWN_MARKER,ImageNode {
-        image: asset_server.load("bevy_logo_dark.svg"),
+        image: asset_server.load("bevy_logo_dark.png"),
         image_mode: NodeImageMode::Auto,
         ..Default::default()
     }));
