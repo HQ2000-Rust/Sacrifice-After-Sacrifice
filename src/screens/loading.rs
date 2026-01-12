@@ -18,9 +18,16 @@ pub struct LoadingScreenCamera;
 
 fn spawn_loading_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((DESPAWN_MARKER, LoadingScreenCamera));
-    commands.spawn((DESPAWN_MARKER,ImageNode {
+    commands.spawn((DESPAWN_MARKER,
+        Node {
+            margin: UiRect::all(Val::Auto),
+            //this needs to be tuned later
+            width: Val::Percent(70.),
+  
+            ..Default::default()
+        },
+        ImageNode {
         image: asset_server.load("bevy_logo_dark.png"),
-        image_mode: NodeImageMode::Auto,
         ..Default::default()
     }));
 }
