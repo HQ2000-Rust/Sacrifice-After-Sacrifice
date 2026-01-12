@@ -44,3 +44,4 @@ codegen-units = 1
 # Slows compile times a lot (alternative: "thin"), marginal improvements.
 lto = "fat"
 
+#strip=trúe
