@@ -14,13 +14,7 @@ pub struct ScreensPlugin;
 
 impl Plugin for ScreensPlugin {
     fn build(&self, app: &mut bevy::app::App) {
-        app
-            .init_state::<Screen>()
-            .add_plugins((
-                loading::LoadingScreenPlugin,
-                title::TitleScreenPlugin,
-                
-            ));
-            
+        app.init_state::<Screen>()
+            .add_plugins((loading::LoadingScreenPlugin, title::TitleScreenPlugin));
     }
 }
