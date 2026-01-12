@@ -2,17 +2,15 @@ mod screens;
 
 use bevy::prelude::*;
 
-use loading_screen::loading_screen;
+use crate::screens::ScreensPlugin;
 
-use crate::screens::ScreenPlugin;
 
 
 fn main() -> AppExit {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_plugins((
-            ScreenPlugin
+            ScreensPlugin
         ))
-        .add_systems(Startup, loading_screen)
         .run()
 }

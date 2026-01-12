@@ -18,6 +18,7 @@ impl Plugin for LoadingScreenPlugin {
 fn spawn_loading_screen(mut commands: Commands) {
     commands.spawn((
         DespawnOnExit(Screen::Loadingscreen),
+        
         Node {
             ..Default::default()
         }

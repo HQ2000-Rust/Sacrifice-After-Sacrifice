@@ -10,14 +10,16 @@ pub enum Screen {
     TitleScreen,
 }
 
-pub struct ScreenPlugin;
+pub struct ScreensPlugin;
 
-impl Plugin for ScreenPlugin {
+impl Plugin for ScreensPlugin {
     fn build(&self, app: &mut bevy::app::App) {
         app
             .init_state::<Screen>()
             .add_plugins((
                 loading::LoadingScreenPlugin,
+                title::TitleScreenPlugin,
+                
             ));
             
     }
