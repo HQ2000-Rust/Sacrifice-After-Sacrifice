@@ -3,7 +3,7 @@ mod title;
 
 use bevy::prelude::*;
 
-#[derive(Default, PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy, Debug, States)]
+#[derive(Default, Debug, Hash, Clone, PartialEq, Eq, States)]
 pub enum Screen {
     #[default]
     Loadingscreen,
@@ -14,7 +14,13 @@ pub struct ScreensPlugin;
 
 impl Plugin for ScreensPlugin {
     fn build(&self, app: &mut bevy::app::App) {
-        app.init_state::<Screen>()
-            .add_plugins((loading::LoadingScreenPlugin, title::TitleScreenPlugin));
+        app
+            .init_state::<Screen>()
+            .add_plugins((
+                loading::LoadingScreenPlugin,
+                title::TitleScreenPlugin,
+                
+            ));
+            
     }
 }
