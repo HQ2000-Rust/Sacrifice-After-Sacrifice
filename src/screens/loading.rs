@@ -1,4 +1,4 @@
-use bevy::prelude::*;
+use bevy::{ecs::component, prelude::*};
 
 use crate::{asset_management::loading_screen::BevyLogo, screens::Screen};
 
@@ -10,15 +10,19 @@ impl Plugin for LoadingScreenPlugin {
     }
 }
 
-fn spawn_loading_screen(mut commands: Commands) {
-    commands.spawn((
-        DespawnOnExit(Screen::Loadingscreen),
-        Node {
-            ..Default::default()
-        },
-    ));
-}
+const DESPAWN_MARKER: DespawnOnExit<Screen> =DespawnOnExit(Screen::Loadingscreen);
 
-fn load_assets(mut bevy_logo: ResMut<BevyLogo>, asset_server: Res<AssetServer>) {
-    bevy_logo.0=asset_server.load::<Image>("bevy_logo_dark.svg");
+#[derive(Component)]
+#[require(
+    Camera2d
+)]
+pub struct LoadingScreenCamera;
+
+fn spawn_loading_screen(mut commands: Commands) {
+    commands.spawn((DESPAWN_MARKER,
+        LoadingScreenCamera));
+    commands.spawn((
+        DESPAWN_MARKER,
+        
+    ));
 }
