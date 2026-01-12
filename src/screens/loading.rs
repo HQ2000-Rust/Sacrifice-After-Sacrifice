@@ -16,7 +16,11 @@ const DESPAWN_MARKER: DespawnOnExit<Screen> = DespawnOnExit(Screen::Loadingscree
 #[require(Camera2d)]
 pub struct LoadingScreenCamera;
 
-fn spawn_loading_screen(mut commands: Commands) {
+fn spawn_loading_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((DESPAWN_MARKER, LoadingScreenCamera));
-    commands.spawn((DESPAWN_MARKER,));
+    commands.spawn((DESPAWN_MARKER,ImageNode {
+        image: asset_server.load("bevy_logo_dark.svg"),
+        image_mode: NodeImageMode::Auto,
+        ..Default::default()
+    }));
 }
