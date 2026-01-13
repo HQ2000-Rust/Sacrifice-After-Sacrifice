@@ -12,6 +12,8 @@ impl Plugin for LoadingScreenPlugin {
 
 const DESPAWN_MARKER: DespawnOnExit<Screen> = DespawnOnExit(Screen::Loadingscreen);
 
+
+//TODO: maybe only one camera??
 #[derive(Component)]
 #[require(Camera2d)]
 pub struct LoadingScreenCamera;
