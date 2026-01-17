@@ -1,9 +1,10 @@
 mod loading;
 mod title;
+mod util;
 
 use bevy::prelude::*;
 
-#[derive(Default, Debug, Hash, Clone, PartialEq, Eq, States)]
+#[derive(Default, Debug, Hash, Clone, Copy, PartialEq, Eq, States)]
 pub enum Screen {
     #[default]
     Loadingscreen,

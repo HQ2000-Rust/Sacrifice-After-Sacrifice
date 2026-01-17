@@ -4,14 +4,24 @@ use crate::screens::Screen;
 
 pub struct LoadingScreenPlugin;
 
+#[derive(Event)]
+pub struct InitialLoadingFinished;
+
 impl Plugin for LoadingScreenPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(OnEnter(Screen::Loadingscreen), (spawn_loading_screen));
+        app.add_systems(
+            OnEnter(Screen::Loadingscreen),
+            (
+                spawn_loading_screen,
+                crate::asset_management::load_everything,
+                )
+                //chain so everything is despawned after the loading
+                .chain(),
+        );
     }
 }
 
 const DESPAWN_MARKER: DespawnOnExit<Screen> = DespawnOnExit(Screen::Loadingscreen);
-
 
 //TODO: maybe only one camera??
 #[derive(Component)]
@@ -20,16 +30,20 @@ pub struct LoadingScreenCamera;
 
 fn spawn_loading_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((DESPAWN_MARKER, LoadingScreenCamera));
-    commands.spawn((DESPAWN_MARKER,
+    commands.spawn((
+        DESPAWN_MARKER,
         Node {
             margin: UiRect::all(Val::Auto),
             //this needs to be tuned later
             width: Val::Percent(70.),
-  
+
             ..Default::default()
         },
         ImageNode {
-        image: asset_server.load("bevy_logo_dark.png"),
-        ..Default::default()
-    }));
+            image: asset_server.load("bevy_logo_dark.png"),
+            ..Default::default()
+        },
+    ));
+    
+    info!("spawned loading screen")
 }
