@@ -1,13 +1,19 @@
 mod asset_management;
 mod screens;
 
-use bevy::{input::common_conditions::input_just_pressed, prelude::*};
+#[cfg(feature = "dev")]
+use bevy::dev_tools::fps_overlay::FpsOverlayPlugin;
+use bevy::prelude::*;
 
-use crate::screens::{Screen, ScreensPlugin};
+use crate::screens::ScreensPlugin;
 
 fn main() -> AppExit {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins((
+            DefaultPlugins,
+            #[cfg(feature = "dev")]
+            FpsOverlayPlugin::default(),
+        ))
         .add_plugins(ScreensPlugin)
         .run()
 }
