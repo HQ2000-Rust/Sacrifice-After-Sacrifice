@@ -20,14 +20,11 @@ pub struct Schedule;
 
 impl Plugin for SplashScreenPlugin {
     fn build(&self, app: &mut App) {
-        app
-        .add_systems(OnEnter(Screen::SplashScreen), spawn_splash_screen)
-        .add_systems(
-            Update,
-            (
-                splash_screen_timer.run_if(in_state(Screen::SplashScreen)),
-            ),
-        );
+        app.add_systems(OnEnter(Screen::SplashScreen), spawn_splash_screen)
+            .add_systems(
+                Update,
+                (splash_screen_timer.run_if(in_state(Screen::SplashScreen)),),
+            );
     }
 }
 

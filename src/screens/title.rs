@@ -15,9 +15,7 @@ impl Plugin for TitleScreenPlugin {
 pub struct TitleScreenCamera;
 
 fn spawn_title_screen(mut commands: Commands) {
-    commands.spawn(
-        (DespawnOnExit(Screen::TitleScreen),TitleScreenCamera,)
-    );
+    commands.spawn((DespawnOnExit(Screen::TitleScreen), TitleScreenCamera));
     commands.spawn((
         DespawnOnExit(Screen::TitleScreen),
         Node::DEFAULT,
