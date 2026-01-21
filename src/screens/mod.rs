@@ -19,6 +19,7 @@ impl Plugin for ScreensPlugin {
             .add_plugins((splash::SplashScreenPlugin, title::TitleScreenPlugin))
             .add_systems(
                 Update,
+                //TODO: make an own schedule instead of always checking for eligibility
                 (|state: Res<State<Screen>>| {
                     info!("{:?}", state.get());
                 })
