@@ -2,7 +2,7 @@ mod splash;
 mod title;
 mod util;
 
-use bevy::{input::common_conditions::input_just_pressed, prelude::*};
+use bevy::prelude::*;
 
 #[derive(Default, Debug, Hash, Clone, Copy, PartialEq, Eq, States)]
 pub enum Screen {

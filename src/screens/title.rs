@@ -6,7 +6,11 @@ pub struct TitleScreenPlugin;
 
 impl Plugin for TitleScreenPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(OnEnter(Screen::TitleScreen), (spawn_title_screen));
+        app.add_systems(OnEnter(Screen::TitleScreen), (spawn_title_screen))
+            .add_systems(
+                Update,
+                next_screen_on_click.run_if(in_state(Screen::TitleScreen)),
+            );
     }
 }
 
@@ -37,4 +41,15 @@ fn spawn_title_screen(mut commands: Commands) {
             (Button, children![(Node::DEFAULT, Text::new("Start"))])
         ],
     ));
+}
+
+fn next_screen_on_click(
+    mut interaction_query: Query<&Interaction>,
+    mut next_state: ResMut<NextState<Screen>>,
+) {
+    for interaction in interaction_query.iter_mut() {
+        if *interaction == Interaction::Pressed {
+            next_state.set(todo!());
+        }
+    }
 }
