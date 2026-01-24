@@ -18,7 +18,23 @@ fn spawn_title_screen(mut commands: Commands) {
     commands.spawn((DespawnOnExit(Screen::TitleScreen), TitleScreenCamera));
     commands.spawn((
         DespawnOnExit(Screen::TitleScreen),
-        Node::DEFAULT,
-        Text2d::new("Title"),
+        Node {
+            flex_direction: FlexDirection::Column,
+            align_items: AlignItems::Center,
+            height: Val::Percent(100.),
+            width: Val::Percent(100.),
+            justify_content: JustifyContent::Center,
+            ..Default::default()
+        },
+        children![
+            (
+                Node {
+                    margin: UiRect::bottom(Val::Px(20.)),
+                    ..Default::default()
+                },
+                Text::new("Title")
+            ),
+            (Button, children![(Node::DEFAULT, Text::new("Start"))])
+        ],
     ));
 }
