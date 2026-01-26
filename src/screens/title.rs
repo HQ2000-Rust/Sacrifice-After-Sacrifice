@@ -26,15 +26,16 @@ fn spawn_title_screen(mut commands: Commands) {
         DespawnOnExit(Screen::TitleScreen),
         Node {
             flex_direction: FlexDirection::Column,
-            align_items: AlignItems::Center,
-            height: Val::Percent(100.),
-            width: Val::Percent(100.),
+            align_items: AlignItems::Start,
+            height: percent(100),
+            width: percent(100),
             justify_content: JustifyContent::Center,
             ..Default::default()
         },
         children![
             (
                 Node {
+                    height: px(40),
                     margin: UiRect::bottom(px(20)),
                     ..Default::default()
                 },
@@ -43,14 +44,36 @@ fn spawn_title_screen(mut commands: Commands) {
             title_screen::button(
                 "Start",
                 Node {
-                    
-                    margin: UiRect::all(px(20)),
-                    height: px(40),
+                    margin: UiRect::all(px(7.5)),
+
                     width: px(200),
-                    align_self: AlignSelf::Center,
+                    height: px(35),
+                    align_self: AlignSelf::Start,
                     ..default()
                 }
             ),
+            title_screen::button(
+                "Settings",
+                Node {
+                    margin: UiRect::all(px(7.5)),
+
+                    width: px(200),
+                    height: px(35),
+                    align_self: AlignSelf::Start,
+                    ..default()
+                }
+            ),
+            title_screen::button(
+                "About",
+                Node {
+                    margin: UiRect::all(px(7.5)),
+
+                    width: px(200),
+                    height: px(35),
+                    align_self: AlignSelf::Start,
+                    ..default()
+                }
+            )
         ],
     ));
 }
