@@ -32,19 +32,26 @@ fn spawn_title_screen(mut commands: Commands) {
             justify_content: JustifyContent::Center,
             ..Default::default()
         },
-        children![(
-            Node {
-                margin: UiRect::bottom(Val::Px(20.)),
-                ..Default::default()
-            },
-            Text::new("Title")
-        ),
-        title_screen::button("Start", Node {
-            margin: UiRect::all(px(20.)),
-            ..default()
-        }),
+        children![
+            (
+                Node {
+                    margin: UiRect::bottom(px(20)),
+                    ..Default::default()
+                },
+                Text::new("Title")
+            ),
+            title_screen::button(
+                "Start",
+                Node {
+                    
+                    margin: UiRect::all(px(20)),
+                    height: px(40),
+                    width: px(200),
+                    align_self: AlignSelf::Center,
+                    ..default()
+                }
+            ),
         ],
-        
     ));
 }
 
