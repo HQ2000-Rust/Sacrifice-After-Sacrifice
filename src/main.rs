@@ -1,5 +1,6 @@
 mod asset_management;
 mod screens;
+pub mod ui;
 
 #[cfg(feature = "dev")]
 use bevy::dev_tools::fps_overlay::FpsOverlayPlugin;

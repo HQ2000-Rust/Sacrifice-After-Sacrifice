@@ -14,6 +14,8 @@ impl Plugin for TitleScreenPlugin {
     }
 }
 
+use crate::ui::title_screen;
+
 #[derive(Component)]
 #[require(Camera2d)]
 pub struct TitleScreenCamera;
@@ -30,16 +32,16 @@ fn spawn_title_screen(mut commands: Commands) {
             justify_content: JustifyContent::Center,
             ..Default::default()
         },
-        children![
-            (
-                Node {
-                    margin: UiRect::bottom(Val::Px(20.)),
-                    ..Default::default()
-                },
-                Text::new("Title")
-            ),
-            (Button, children![(Node::DEFAULT, Text::new("Start"))])
+        children![(
+            Node {
+                margin: UiRect::bottom(Val::Px(20.)),
+                ..Default::default()
+            },
+            Text::new("Title")
+        ),
+        title_screen::button("Start", Node::default()),
         ],
+        
     ));
 }
 
