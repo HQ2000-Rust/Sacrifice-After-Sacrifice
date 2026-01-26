@@ -39,7 +39,10 @@ fn spawn_title_screen(mut commands: Commands) {
             },
             Text::new("Title")
         ),
-        title_screen::button("Start", Node::default()),
+        title_screen::button("Start", Node {
+            margin: UiRect::all(px(20.)),
+            ..default()
+        }),
         ],
         
     ));
