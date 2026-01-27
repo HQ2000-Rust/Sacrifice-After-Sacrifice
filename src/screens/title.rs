@@ -33,13 +33,13 @@ fn spawn_title_screen(mut commands: Commands) {
             ..Default::default()
         },
         children![
-            (
+            title_screen::title_text(
+                "Sacrifice After Sacrifice",
                 Node {
                     height: px(40),
-                    margin: UiRect::bottom(px(20)),
+                    margin: UiRect::all(px(7.5)),
                     ..Default::default()
-                },
-                Text::new("Title")
+                }
             ),
             title_screen::button(
                 "Start",

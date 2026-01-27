@@ -16,3 +16,7 @@ pub fn button(text: impl Into<String>, button_node: Node) -> impl Bundle {
         BackgroundColor(Color::linear_rgba(0., 0., 0., 0.4)),
     )
 }
+
+pub fn title_text(text: impl Into<String>, node: Node) -> impl Bundle {
+    (node, Text::new(text))
+}
