@@ -9,14 +9,16 @@ impl Plugin for TitleScreenPlugin {
         app.add_systems(OnEnter(Screen::TitleScreen), spawn_title_screen)
             .add_systems(
                 Update,
-                (button_cosmetic_effects,
-                //next_screen_on_click
-                ).run_if(in_state(Screen::TitleScreen)),
+                (
+                    button_cosmetic_effects,
+                    //next_screen_on_click
+                )
+                    .run_if(in_state(Screen::TitleScreen)),
             );
     }
 }
 
-use crate::ui::title_screen;
+use crate::ui::title_screen as ui;
 
 #[derive(Component)]
 #[require(Camera2d)]
@@ -43,69 +45,29 @@ fn spawn_title_screen(mut commands: Commands) {
             ..Default::default()
         },
         children![
-            title_screen::title_text(
-                "Sacrifice After Sacrifice",
-                Node {
-                    height: px(40),
-                    margin: UiRect::all(px(7.5)),
-                    ..Default::default()
-                }
+            (
+                ui::title_text("Sacrifice After Sacrifice",),
+                ui::title_node()
             ),
             (
                 TitleScreenButton::Start,
-                title_screen::button(
-                    "Start",
-                    Node {
-                        margin: UiRect::all(px(7.5)),
-
-                        width: px(200),
-                        height: px(35),
-                        align_self: AlignSelf::Start,
-                        ..default()
-                    }
-                ),
+                ui::default_button_node(),
+                ui::button("Start"),
             ),
             (
                 TitleScreenButton::Settings,
-                title_screen::button(
-                    "Settings",
-                    Node {
-                        margin: UiRect::all(px(7.5)),
-
-                        width: px(200),
-                        height: px(35),
-                        align_self: AlignSelf::Start,
-                        ..default()
-                    }
-                )
+                ui::default_button_node(),
+                ui::button("Settings")
             ),
             (
                 TitleScreenButton::About,
-                title_screen::button(
-                    "About",
-                    Node {
-                        margin: UiRect::all(px(7.5)),
-
-                        width: px(200),
-                        height: px(35),
-                        align_self: AlignSelf::Start,
-                        ..default()
-                    }
-                )
+                ui::default_button_node(),
+                ui::button("About")
             ),
             (
                 TitleScreenButton::Quit,
-                title_screen::button(
-                    "Quit",
-                    Node {
-                        margin: UiRect::all(px(7.5)),
-
-                        width: px(200),
-                        height: px(35),
-                        align_self: AlignSelf::Start,
-                        ..default()
-                    }
-                ),
+                ui::default_button_node(),
+                ui::button("Quit"),
             )
         ],
     ));
@@ -132,13 +94,13 @@ fn button_cosmetic_effects(
     for (interaction, mut bg_color, mut children) in interaction_query {
         match interaction {
             Interaction::Hovered => {
-                *bg_color = BackgroundColor(title_screen::button::HOVERED_COLOR);
+                *bg_color = BackgroundColor(ui::button::HOVERED_COLOR);
             }
             Interaction::Pressed => {
-                *bg_color = BackgroundColor(title_screen::button::PRESSED_COLOR);
+                *bg_color = BackgroundColor(ui::button::PRESSED_COLOR);
             }
             Interaction::None => {
-                *bg_color = BackgroundColor(title_screen::button::STANDARD_COLOR);
+                *bg_color = BackgroundColor(ui::button::STANDARD_COLOR);
             }
         }
     }

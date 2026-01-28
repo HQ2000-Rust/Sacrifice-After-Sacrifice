@@ -6,10 +6,31 @@ pub mod button {
     pub const HOVERED_COLOR: Color = Color::linear_rgba(0., 0., 0., 0.55);
     pub const PRESSED_COLOR: Color = Color::linear_rgba(0., 0., 0., 0.8);
 }
-pub fn button(text: impl Into<String>, button_node: Node) -> impl Bundle {
+
+//no constant since (Default::)default() isn't const
+pub fn default_button_node() -> Node {
+    Node {
+        margin: UiRect::all(px(7.5)),
+
+        width: px(200),
+        height: px(35),
+        align_self: AlignSelf::Start,
+        ..default()
+    }
+}
+
+//no constant since (Default::)default() isn't const
+pub fn title_node() -> Node {
+    Node {
+        height: px(40),
+        margin: UiRect::all(px(7.5)),
+        ..default()
+    }
+}
+
+pub fn button(text: impl Into<String>) -> impl Bundle {
     (
         Button,
-        button_node,
         children![(
             Text::new(text),
             Node {
@@ -23,6 +44,6 @@ pub fn button(text: impl Into<String>, button_node: Node) -> impl Bundle {
     )
 }
 
-pub fn title_text(text: impl Into<String>, node: Node) -> impl Bundle {
-    (node, Text::new(text))
+pub fn title_text(text: impl Into<String>) -> impl Bundle {
+    (Text::new(text))
 }
