@@ -1,3 +1,5 @@
+//TODO: screen state switching, about, settings
+
 use bevy::prelude::*;
 
 mod button_effects;
