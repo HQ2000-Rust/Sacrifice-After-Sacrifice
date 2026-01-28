@@ -32,7 +32,7 @@ pub enum TitleScreenButton {
     Quit,
 }
 
-fn spawn_title_screen(mut commands: Commands) {
+fn spawn_title_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((DespawnOnExit(Screen::TitleScreen), TitleScreenCamera));
     commands.spawn((
         DespawnOnExit(Screen::TitleScreen),
@@ -46,28 +46,28 @@ fn spawn_title_screen(mut commands: Commands) {
         },
         children![
             (
-                ui::title_text("Sacrifice After Sacrifice",),
+                ui::title_text("Sacrifice After Sacrifice", &asset_server),
                 ui::title_node()
             ),
             (
                 TitleScreenButton::Start,
                 ui::default_button_node(),
-                ui::button("Start"),
+                ui::button("Start", &asset_server),
             ),
             (
                 TitleScreenButton::Settings,
                 ui::default_button_node(),
-                ui::button("Settings")
+                ui::button("Settings", &asset_server)
             ),
             (
                 TitleScreenButton::About,
                 ui::default_button_node(),
-                ui::button("About")
+                ui::button("About", &asset_server)
             ),
             (
                 TitleScreenButton::Quit,
                 ui::default_button_node(),
-                ui::button("Quit"),
+                ui::button("Quit", &asset_server),
             )
         ],
     ));
