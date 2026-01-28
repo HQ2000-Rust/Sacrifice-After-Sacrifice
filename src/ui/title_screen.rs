@@ -53,7 +53,7 @@ pub fn button(text: impl Into<String>, asset_server: &AssetServer) -> impl Bundl
             Text::new(text),
             TextFont {
                 font: if let Some(font_path) = text::BUTTON_FONT_PATH { asset_server.load(font_path) } else { default() },
-                font_size: text::BUTTON_FONT_SIZE,
+                font_size: text::BUTTON_FONT_SIZE*UI_SCALE,
                 ..default()
             }
         )],
@@ -66,7 +66,7 @@ pub fn title_text(text: impl Into<String>, asset_server: &AssetServer) -> impl B
         Text::new(text),
         TextFont {
             font: if let Some(font_path) = text::TITLE_FONT_PATH { asset_server.load(font_path) } else { default() },
-            font_size: text::TITLE_FONT_SIZE,
+            font_size: text::TITLE_FONT_SIZE*UI_SCALE,
             ..default()
         }
     )
