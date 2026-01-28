@@ -1,5 +1,7 @@
 use bevy::prelude::*;
 
+mod button_effects;
+
 use crate::screens::Screen;
 
 pub struct TitleScreenPlugin;
@@ -11,7 +13,7 @@ impl Plugin for TitleScreenPlugin {
                 Update,
                 (
                     button_cosmetic_effects,
-                    //next_screen_on_click
+                    handle_button_presses,
                 )
                     .run_if(in_state(Screen::TitleScreen)),
             );
@@ -73,14 +75,22 @@ fn spawn_title_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     ));
 }
 
+//put them together later
 
 fn handle_button_presses(
     mut interaction_query: Query<(&Interaction, &TitleScreenButton), Changed<Interaction>>,
+    mut commands: Commands,
 ) {
-    for (interaction, button_type) in interaction_query.iter_mut() {
-        /*if button_type == TitleScreenButton::Start && *interaction == Interaction::Pressed {
-            next_state.set(todo!());
-        }*/
+    for (interaction, button) in interaction_query.iter() {
+        if *interaction==Interaction::Pressed {
+            //system_cached_with if we want to supply e.g. the interaction state (-> first param With<> needed)
+            match button {
+                TitleScreenButton::Start => commands.run_system_cached(button_effects::start),
+                TitleScreenButton::Settings => commands.run_system_cached(button_effects::settings),
+                TitleScreenButton::About => commands.run_system_cached(button_effects::about),
+                TitleScreenButton::Quit => commands.run_system_cached(button_effects::quit),
+            };
+        }
     }
 }
 
