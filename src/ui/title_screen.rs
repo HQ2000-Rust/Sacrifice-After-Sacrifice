@@ -1,5 +1,11 @@
 use bevy::prelude::*;
 
+pub mod button {
+    use bevy::prelude::*;
+    pub const STANDARD_COLOR: Color = Color::linear_rgba(0., 0., 0., 0.3);
+    pub const HOVERED_COLOR: Color = Color::linear_rgba(0., 0., 0., 0.55);
+    pub const PRESSED_COLOR: Color = Color::linear_rgba(0., 0., 0., 0.8);
+}
 pub fn button(text: impl Into<String>, button_node: Node) -> impl Bundle {
     (
         Button,
@@ -13,7 +19,7 @@ pub fn button(text: impl Into<String>, button_node: Node) -> impl Bundle {
                 ..default()
             },
         )],
-        BackgroundColor(Color::linear_rgba(0., 0., 0., 0.4)),
+        BackgroundColor(button::STANDARD_COLOR),
     )
 }
 

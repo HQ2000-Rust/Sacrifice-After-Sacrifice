@@ -6,10 +6,12 @@ pub struct TitleScreenPlugin;
 
 impl Plugin for TitleScreenPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(OnEnter(Screen::TitleScreen), (spawn_title_screen))
+        app.add_systems(OnEnter(Screen::TitleScreen), spawn_title_screen)
             .add_systems(
                 Update,
-                next_screen_on_click.run_if(in_state(Screen::TitleScreen)),
+                (button_cosmetic_effects,
+                //next_screen_on_click
+                ).run_if(in_state(Screen::TitleScreen)),
             );
     }
 }
@@ -109,13 +111,35 @@ fn spawn_title_screen(mut commands: Commands) {
     ));
 }
 
-fn next_screen_on_click(
-    mut interaction_query: Query<&Interaction>,
+//TODO
+/*fn next_screen_on_click(
+    mut interaction_query: Query<(&Interaction, &TitleScreenButton), Changed<Interaction>>,
     mut next_state: ResMut<NextState<Screen>>,
 ) {
-    for interaction in interaction_query.iter_mut() {
-        if *interaction == Interaction::Pressed {
+    for (interaction, button_type) in interaction_query.iter_mut() {
+        /*if button_type == TitleScreenButton::Start && *interaction == Interaction::Pressed {
             next_state.set(todo!());
+        }*/
+    }
+}*/
+
+fn button_cosmetic_effects(
+    mut interaction_query: Query<
+        (&Interaction, &mut BackgroundColor, &mut Children),
+        Changed<Interaction>,
+    >,
+) {
+    for (interaction, mut bg_color, mut children) in interaction_query {
+        match interaction {
+            Interaction::Hovered => {
+                *bg_color = BackgroundColor(title_screen::button::HOVERED_COLOR);
+            }
+            Interaction::Pressed => {
+                *bg_color = BackgroundColor(title_screen::button::PRESSED_COLOR);
+            }
+            Interaction::None => {
+                *bg_color = BackgroundColor(title_screen::button::STANDARD_COLOR);
+            }
         }
     }
 }
