@@ -73,17 +73,17 @@ fn spawn_title_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     ));
 }
 
-//TODO
-/*fn next_screen_on_click(
+
+fn handle_button_presses(
     mut interaction_query: Query<(&Interaction, &TitleScreenButton), Changed<Interaction>>,
-    mut next_state: ResMut<NextState<Screen>>,
 ) {
     for (interaction, button_type) in interaction_query.iter_mut() {
         /*if button_type == TitleScreenButton::Start && *interaction == Interaction::Pressed {
             next_state.set(todo!());
         }*/
     }
-}*/
+}
+
 
 fn button_cosmetic_effects(
     mut interaction_query: Query<
