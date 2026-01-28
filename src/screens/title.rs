@@ -20,6 +20,7 @@ use crate::ui::title_screen;
 #[require(Camera2d)]
 pub struct TitleScreenCamera;
 
+
 fn spawn_title_screen(mut commands: Commands) {
     commands.spawn((DespawnOnExit(Screen::TitleScreen), TitleScreenCamera));
     commands.spawn((
@@ -73,7 +74,18 @@ fn spawn_title_screen(mut commands: Commands) {
                     align_self: AlignSelf::Start,
                     ..default()
                 }
-            )
+            ),
+            title_screen::button(
+                "Quit",
+                Node {
+                    margin: UiRect::all(px(7.5)),
+
+                    width: px(200),
+                    height: px(35),
+                    align_self: AlignSelf::Start,
+                    ..default()
+                }
+            ),
         ],
     ));
 }
