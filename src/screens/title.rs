@@ -20,6 +20,13 @@ use crate::ui::title_screen;
 #[require(Camera2d)]
 pub struct TitleScreenCamera;
 
+#[derive(Component)]
+pub enum TitleScreenButton {
+    Start,
+    Settings,
+    About,
+    Quit,
+}
 
 fn spawn_title_screen(mut commands: Commands) {
     commands.spawn((DespawnOnExit(Screen::TitleScreen), TitleScreenCamera));
@@ -42,50 +49,62 @@ fn spawn_title_screen(mut commands: Commands) {
                     ..Default::default()
                 }
             ),
-            title_screen::button(
-                "Start",
-                Node {
-                    margin: UiRect::all(px(7.5)),
+            (
+                TitleScreenButton::Start,
+                title_screen::button(
+                    "Start",
+                    Node {
+                        margin: UiRect::all(px(7.5)),
 
-                    width: px(200),
-                    height: px(35),
-                    align_self: AlignSelf::Start,
-                    ..default()
-                }
+                        width: px(200),
+                        height: px(35),
+                        align_self: AlignSelf::Start,
+                        ..default()
+                    }
+                ),
             ),
-            title_screen::button(
-                "Settings",
-                Node {
-                    margin: UiRect::all(px(7.5)),
+            (
+                TitleScreenButton::Settings,
+                title_screen::button(
+                    "Settings",
+                    Node {
+                        margin: UiRect::all(px(7.5)),
 
-                    width: px(200),
-                    height: px(35),
-                    align_self: AlignSelf::Start,
-                    ..default()
-                }
+                        width: px(200),
+                        height: px(35),
+                        align_self: AlignSelf::Start,
+                        ..default()
+                    }
+                )
             ),
-            title_screen::button(
-                "About",
-                Node {
-                    margin: UiRect::all(px(7.5)),
+            (
+                TitleScreenButton::About,
+                title_screen::button(
+                    "About",
+                    Node {
+                        margin: UiRect::all(px(7.5)),
 
-                    width: px(200),
-                    height: px(35),
-                    align_self: AlignSelf::Start,
-                    ..default()
-                }
+                        width: px(200),
+                        height: px(35),
+                        align_self: AlignSelf::Start,
+                        ..default()
+                    }
+                )
             ),
-            title_screen::button(
-                "Quit",
-                Node {
-                    margin: UiRect::all(px(7.5)),
+            (
+                TitleScreenButton::Quit,
+                title_screen::button(
+                    "Quit",
+                    Node {
+                        margin: UiRect::all(px(7.5)),
 
-                    width: px(200),
-                    height: px(35),
-                    align_self: AlignSelf::Start,
-                    ..default()
-                }
-            ),
+                        width: px(200),
+                        height: px(35),
+                        align_self: AlignSelf::Start,
+                        ..default()
+                    }
+                ),
+            )
         ],
     ));
 }
