@@ -13,10 +13,7 @@ impl Plugin for TitleScreenPlugin {
         app.add_systems(OnEnter(Screen::TitleScreen), spawn_title_screen)
             .add_systems(
                 Update,
-                (
-                    button_cosmetic_effects,
-                    handle_button_presses,
-                )
+                (button_cosmetic_effects, handle_button_presses)
                     .run_if(in_state(Screen::TitleScreen)),
             );
     }
@@ -84,7 +81,7 @@ fn handle_button_presses(
     mut commands: Commands,
 ) {
     for (interaction, button) in interaction_query.iter() {
-        if *interaction==Interaction::Pressed {
+        if *interaction == Interaction::Pressed {
             //system_cached_with if we want to supply e.g. the interaction state (-> first param With<> needed)
             match button {
                 TitleScreenButton::Start => commands.run_system_cached(button_effects::start),
@@ -95,7 +92,6 @@ fn handle_button_presses(
         }
     }
 }
-
 
 fn button_cosmetic_effects(
     mut interaction_query: Query<
