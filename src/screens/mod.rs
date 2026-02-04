@@ -10,6 +10,7 @@ pub enum Screen {
     #[default]
     SplashScreen,
     TitleScreen,
+    LevelSelectionScreen,
 }
 
 pub struct ScreensPlugin;

@@ -14,9 +14,6 @@ impl Default for VanishTimer {
     }
 }
 
-//for later use
-#[derive(ScheduleLabel, Debug, Clone, Hash, PartialEq, Eq)]
-pub struct Schedule;
 
 impl Plugin for SplashScreenPlugin {
     fn build(&self, app: &mut App) {
