@@ -10,7 +10,7 @@ pub struct TitleScreenPlugin;
 
 impl Plugin for TitleScreenPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(OnEnter(Screen::TitleScreen), spawn_title_screen)
+        app.add_systems(OnEnter(Screen::TitleScreen), setup)
             .add_systems(
                 Update,
                 (button_cosmetic_effects, handle_button_presses)
@@ -33,7 +33,7 @@ pub enum TitleScreenButton {
     Quit,
 }
 
-fn spawn_title_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
+fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn((DespawnOnExit(Screen::TitleScreen), TitleScreenCamera));
     commands.spawn((
         DespawnOnExit(Screen::TitleScreen),
