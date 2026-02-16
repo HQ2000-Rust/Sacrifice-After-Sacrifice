@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-pub fn start() {
+pub fn level_select() {
     todo!()
 }
 
