@@ -1,7 +1,9 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, state::commands};
 
-pub fn level_select() {
-    todo!()
+use crate::screens::{Screen, util::set_screen};
+
+pub fn level_select(commands: &mut Commands) {
+    commands.run_system_cached(set_screen(Screen::LevelSelectionScreen));
 }
 
 pub fn about() {
