@@ -2,7 +2,7 @@ use bevy::prelude::*;
 
 use crate::screens::Screen;
 
-struct LevelSelectionPlugin;
+pub struct LevelSelectionPlugin;
 
 impl Plugin for LevelSelectionPlugin {
     fn build(&self, app: &mut App) {
