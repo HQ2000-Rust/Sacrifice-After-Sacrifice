@@ -14,7 +14,6 @@ impl Default for VanishTimer {
     }
 }
 
-
 impl Plugin for SplashScreenPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(OnEnter(Screen::SplashScreen), spawn_splash_screen)
