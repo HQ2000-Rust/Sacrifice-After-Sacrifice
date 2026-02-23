@@ -20,6 +20,6 @@ fn setup(mut commands: Commands) {
         },
         children![
             
-        ]
+        ],
     ));
 }

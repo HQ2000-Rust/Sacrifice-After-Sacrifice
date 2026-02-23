@@ -84,7 +84,9 @@ fn handle_button_presses(
         if *interaction == Interaction::Pressed {
             //system_cached_with if we want to supply e.g. the interaction state (-> first param With<> needed)
             match button {
-                TitleScreenButton::Start => commands.run_system_cached(button_effects::level_select),
+                TitleScreenButton::Start => {
+                    commands.run_system_cached(button_effects::level_select)
+                }
                 TitleScreenButton::Settings => commands.run_system_cached(button_effects::settings),
                 TitleScreenButton::About => commands.run_system_cached(button_effects::about),
                 TitleScreenButton::Quit => commands.run_system_cached(button_effects::quit),
