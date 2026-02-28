@@ -18,8 +18,6 @@ fn setup(mut commands: Commands) {
             width: percent(100),
             ..default()
         },
-        children![
-            
-        ],
+        
     ));
 }
