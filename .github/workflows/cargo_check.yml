@@ -10,5 +10,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: install dependencies
+        run: |
+          sudo apt install g++ pkg-config libx11-dev libasound2-dev libudev-dev libxkbcommon-x11-0
+          sudo apt install libwayland-dev libxkbcommon-dev
       - name: check
         run: cargo check
