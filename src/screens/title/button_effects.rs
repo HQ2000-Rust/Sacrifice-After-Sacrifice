@@ -2,8 +2,8 @@ use bevy::{prelude::*, state::commands};
 
 use crate::screens::{Screen, util::set_screen};
 
-pub fn level_select(mut commands: Commands) {
-    commands.run_system_cached(set_screen(Screen::LevelSelectionScreen));
+pub fn level_select(mut next_screen_state: ResMut<NextState<Screen>>) {
+    next_screen_state.set(Screen::LevelSelectionScreen);
 }
 
 pub fn about() {
