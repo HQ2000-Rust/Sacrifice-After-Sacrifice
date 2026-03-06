@@ -2,6 +2,7 @@ mod level_selection;
 mod splash;
 mod title;
 mod util;
+mod level;
 
 use bevy::prelude::*;
 
