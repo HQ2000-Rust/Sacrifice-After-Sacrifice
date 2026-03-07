@@ -6,6 +6,8 @@ mod level;
 
 use bevy::prelude::*;
 
+use crate::screens::util::LevelId;
+
 #[derive(Default, Debug, Hash, Clone, Copy, PartialEq, Eq, States)]
 pub enum Screen {
     #[default]
