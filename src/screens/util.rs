@@ -14,7 +14,7 @@ pub fn set_screen(next_screen: Screen) -> impl FnMut(ResMut<'_, NextState<Screen
 const LEVEL_RANGE: RangeInclusive<u8>= 1..=1;
 
 #[repr(transparent)]
-#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord,)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct LevelId(u8);
 
 impl LevelId {
