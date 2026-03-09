@@ -127,21 +127,10 @@ fn scroll_area_demo() -> impl Bundle {
                     },
                     BackgroundColor(colors::GRAY1.into()),
                     ScrollPosition(Vec2::new(0.0, 10.0)),
-                    Children::spawn((
+                    Children::spawn(
                         // The actual content of the scrolling area
-                        Spawn(text_row("Alpha Wolf")),
-                        Spawn(text_row("Beta Blocker")),
-                        Spawn(text_row("Delta Sleep")),
-                        Spawn(text_row("Gamma Ray")),
-                        Spawn(text_row("Epsilon Eridani")),
-                        Spawn(text_row("Zeta Function")),
-                        Spawn(text_row("Lambda Calculus")),
-                        Spawn(text_row("Nu Metal")),
-                        Spawn(text_row("Pi Day")),
-                        Spawn(text_row("Chi Pants")),
-                        Spawn(text_row("Psi Powers")),
-                        Spawn(text_row("Omega Fatty Acid")),
-                    )),
+                        Spawn((LevelButton::Level1, text_row("Level 1"))),
+                    ),
                 ))
                 .id();
 
