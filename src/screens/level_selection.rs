@@ -15,7 +15,10 @@ impl Plugin for LevelSelectionPlugin {
             )
             .add_systems(
                 Update,
+                (
                 update_scrollbar_thumb.run_if(in_state(Screen::LevelSelectionScreen)),
+                    handle_button_presses.run_if(in_state(Screen::LevelSelectionScreen)),
+                ),
             );
     }
 }
@@ -39,12 +42,12 @@ fn start_level(level: Option<LevelId>, next_screen: &mut ResMut<NextState<Screen
 
 fn handle_button_presses(
     q_buttons: Query<(&LevelButton, &Interaction), Changed<Interaction>>,
-    next_screen: &mut ResMut<NextState<Screen>>,
+    mut next_screen: ResMut<NextState<Screen>>,
 ) {
     for (button, interaction) in q_buttons.iter() {
         if *interaction == Interaction::Pressed {
             match button {
-                LevelButton::Level1 => start_level(LevelId::new(1), next_screen),
+                LevelButton::Level1 => start_level(LevelId::new(1), &mut next_screen),
             }
         }
     }
@@ -62,7 +65,6 @@ use bevy::{
         tab_navigation::{TabGroup, TabNavigationPlugin},
     },
     picking::hover::Hovered,
-    prelude::*,
     ui_widgets::{
         ControlOrientation, CoreScrollbarDragState, CoreScrollbarThumb, Scrollbar, ScrollbarPlugin,
     },
