@@ -1,6 +1,6 @@
-use bevy::{prelude::*, state::commands};
+use bevy::prelude::*;
 
-use crate::screens::{Screen, util::set_screen};
+use crate::screens::Screen;
 
 pub fn level_select(mut next_screen_state: ResMut<NextState<Screen>>) {
     next_screen_state.set(Screen::LevelSelectionScreen);
