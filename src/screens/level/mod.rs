@@ -6,8 +6,6 @@ pub struct LevelScreensPlugin;
 
 impl Plugin for LevelScreensPlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugins((
-            
-        ))
+        app.add_plugins(one::LevelOnePlugin);
     }
 }
