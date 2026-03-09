@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::screens::Screen;
+use crate::screens::{Screen, util::LevelId};
 
 pub struct LevelSelectionPlugin;
 
@@ -29,6 +29,30 @@ fn setup(mut commands: Commands) {
             ..default()
         },
     ));
+}
+
+fn start_level(level: Option<LevelId>, next_screen: &mut ResMut<NextState<Screen>>) {
+    if let Some(level) = level {
+        next_screen.set(Screen::LevelScreen(level));
+    }
+}
+
+fn handle_button_presses(
+    q_buttons: Query<(&LevelButton, &Interaction), Changed<Interaction>>,
+    next_screen: &mut ResMut<NextState<Screen>>,
+) {
+    for (button, interaction) in q_buttons.iter() {
+        if *interaction == Interaction::Pressed {
+            match button {
+                LevelButton::Level1 => start_level(LevelId::new(1), next_screen),
+            }
+        }
+    }
+}
+
+#[derive(Component)]
+enum LevelButton {
+    Level1,
 }
 
 use bevy::{
@@ -82,7 +106,7 @@ fn scroll_area_demo() -> impl Bundle {
             display: Display::Grid,
             width: px(200),
             height: px(150),
-            grid_template_columns: vec![RepeatedGridTrack::flex(1, 1.), RepeatedGridTrack::auto(1)],
+            grid_template_columns: vec![RepeatedGridTrack::flex(1, 1.)],
             grid_template_rows: vec![RepeatedGridTrack::flex(1, 1.), RepeatedGridTrack::auto(1)],
             row_gap: px(2),
             column_gap: px(2),
@@ -96,7 +120,7 @@ fn scroll_area_demo() -> impl Bundle {
                 .spawn((
                     Node {
                         display: Display::Flex,
-                        flex_direction: FlexDirection::Column,
+                        flex_direction: FlexDirection::Row,
                         padding: UiRect::all(px(4)),
                         overflow: Overflow::scroll(),
                         ..default()
@@ -122,29 +146,29 @@ fn scroll_area_demo() -> impl Bundle {
                 .id();
 
             // Vertical scrollbar
-            parent.spawn((
-                Node {
-                    min_width: px(8),
-                    grid_row: GridPlacement::start(1),
-                    grid_column: GridPlacement::start(2),
-                    ..default()
-                },
-                Scrollbar {
-                    orientation: ControlOrientation::Vertical,
-                    target: scroll_area_id,
-                    min_thumb_length: 8.0,
-                },
-                Children::spawn(Spawn((
-                    Node {
-                        position_type: PositionType::Absolute,
-                        border_radius: BorderRadius::all(px(4)),
-                        ..default()
-                    },
-                    Hovered::default(),
-                    BackgroundColor(colors::GRAY2.into()),
-                    CoreScrollbarThumb,
-                ))),
-            ));
+            // parent.spawn((
+            //     Node {
+            //         min_width: px(8),
+            //         grid_row: GridPlacement::start(1),
+            //         grid_column: GridPlacement::start(2),
+            //         ..default()
+            //     },
+            //     Scrollbar {
+            //         orientation: ControlOrientation::Vertical,
+            //         target: scroll_area_id,
+            //         min_thumb_length: 8.0,
+            //     },
+            //     Children::spawn(Spawn((
+            //         Node {
+            //             position_type: PositionType::Absolute,
+            //             border_radius: BorderRadius::all(px(4)),
+            //             ..default()
+            //         },
+            //         Hovered::default(),
+            //         BackgroundColor(colors::GRAY2.into()),
+            //         CoreScrollbarThumb,
+            //     ))),
+            // ));
 
             // Horizontal scrollbar
             parent.spawn((

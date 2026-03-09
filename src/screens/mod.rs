@@ -25,6 +25,7 @@ impl Plugin for ScreensPlugin {
             splash::SplashScreenPlugin,
             title::TitleScreenPlugin,
             level_selection::LevelSelectionPlugin,
+            level::LevelScreensPlugin,
         ));
     }
 }
