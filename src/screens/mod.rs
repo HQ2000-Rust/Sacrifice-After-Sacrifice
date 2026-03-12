@@ -14,7 +14,8 @@ pub enum Screen {
     SplashScreen,
     TitleScreen,
     LevelSelectionScreen,
-    LevelScreen(LevelId)
+    LevelScreen(LevelId),
+    SettingsScreen,
 }
 
 pub struct ScreensPlugin;

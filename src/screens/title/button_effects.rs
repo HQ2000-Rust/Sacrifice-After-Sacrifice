@@ -10,8 +10,8 @@ pub fn about() {
     todo!()
 }
 
-pub fn settings() {
-    todo!()
+pub fn settings(mut next_screen_state: ResMut<NextState<Screen>>) {
+    next_screen_state.set(Screen::SettingsScreen);
 }
 
 pub fn quit(mut exit_writer: MessageWriter<AppExit>) {

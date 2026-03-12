@@ -3,6 +3,7 @@
 use bevy::prelude::*;
 
 mod button_effects;
+mod settings;
 
 use crate::screens::Screen;
 
@@ -43,7 +44,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
             height: percent(100),
             width: percent(100),
             justify_content: JustifyContent::Center,
-            ..Default::default()
+            ..default()
         },
         children![
             (
