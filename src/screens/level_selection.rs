@@ -16,7 +16,7 @@ impl Plugin for LevelSelectionPlugin {
             .add_systems(
                 Update,
                 (
-                update_scrollbar_thumb.run_if(in_state(Screen::LevelSelectionScreen)),
+                    update_scrollbar_thumb.run_if(in_state(Screen::LevelSelectionScreen)),
                     handle_button_presses.run_if(in_state(Screen::LevelSelectionScreen)),
                 ),
             );

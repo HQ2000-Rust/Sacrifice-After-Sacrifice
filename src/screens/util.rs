@@ -21,19 +21,18 @@ impl LevelId {
     pub fn new(id: u8) -> Option<LevelId> {
         if LEVEL_RANGE.contains(&id) {
             Some(LevelId(id))
-        }
-        else {
+        } else {
             None
         }
     }
-    
+
     pub fn get(&self) -> u8 {
         self.0
     }
 }
 
 impl TryFrom<u8> for LevelId {
-    type Error=();
+    type Error = ();
     fn try_from(value: u8) -> std::result::Result<Self, Self::Error> {
         LevelId::new(value).ok_or(())
     }
