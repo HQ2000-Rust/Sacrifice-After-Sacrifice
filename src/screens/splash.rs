@@ -1,4 +1,9 @@
+#[cfg(not(feature="dev"))]
 const SPLASH_SCREEN_DURATION: f32 = 3.;
+
+
+#[cfg(feature="dev")]
+const SPLASH_SCREEN_DURATION: f32 = 1.;
 
 use bevy::{ecs::schedule::ScheduleLabel, prelude::*};
 
