@@ -13,7 +13,7 @@ impl Plugin for TitleScreenPlugin {
         app.add_systems(OnEnter(Screen::TitleScreen), setup)
             .add_systems(
                 Update,
-                (button_cosmetic_effects, handle_button_presses)
+                (ui::button_cosmetic_effects, handle_button_presses)
                     .run_if(in_state(Screen::TitleScreen)),
             );
     }
@@ -95,23 +95,3 @@ fn handle_button_presses(
     }
 }
 
-fn button_cosmetic_effects(
-    mut interaction_query: Query<
-        (&Interaction, &mut BackgroundColor, &mut Children),
-        Changed<Interaction>,
-    >,
-) {
-    for (interaction, mut bg_color, mut children) in interaction_query {
-        match interaction {
-            Interaction::Hovered => {
-                *bg_color = BackgroundColor(ui::button::HOVERED_COLOR);
-            }
-            Interaction::Pressed => {
-                *bg_color = BackgroundColor(ui::button::PRESSED_COLOR);
-            }
-            Interaction::None => {
-                *bg_color = BackgroundColor(ui::button::STANDARD_COLOR);
-            }
-        }
-    }
-}

@@ -78,3 +78,25 @@ pub fn title_text(text: impl Into<String>, asset_server: &AssetServer) -> impl B
         },
     )
 }
+
+
+pub fn button_cosmetic_effects(
+    mut interaction_query: Query<
+        (&Interaction, &mut BackgroundColor, &mut Children),
+        Changed<Interaction>,
+    >,
+) {
+    for (interaction, mut bg_color, mut children) in interaction_query {
+        match interaction {
+            Interaction::Hovered => {
+                *bg_color = BackgroundColor(button::HOVERED_COLOR);
+            }
+            Interaction::Pressed => {
+                *bg_color = BackgroundColor(button::PRESSED_COLOR);
+            }
+            Interaction::None => {
+                *bg_color = BackgroundColor(button::STANDARD_COLOR);
+            }
+        }
+    }
+}
