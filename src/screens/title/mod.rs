@@ -3,7 +3,6 @@
 use bevy::prelude::*;
 
 mod button_effects;
-mod settings;
 
 use crate::screens::Screen;
 
@@ -20,7 +19,7 @@ impl Plugin for TitleScreenPlugin {
     }
 }
 
-use crate::ui::title_screen as ui;
+use crate::ui::default as ui;
 
 #[derive(Component)]
 #[require(Camera2d)]

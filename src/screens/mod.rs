@@ -1,5 +1,6 @@
 mod level;
 mod level_selection;
+mod settings;
 mod splash;
 mod title;
 mod util;
@@ -27,6 +28,7 @@ impl Plugin for ScreensPlugin {
             title::TitleScreenPlugin,
             level_selection::LevelSelectionPlugin,
             level::LevelScreensPlugin,
+            settings::SettingsPlugin,
         ));
     }
 }
