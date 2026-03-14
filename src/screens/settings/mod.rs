@@ -40,14 +40,12 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         Node {
             width: percent(100),
             height: percent(100),
-
             ..default()
         },
         children![(
             ui::default_button_node(),
             ui::button("Apply", &asset_server)
         )],
-        ui::default_button_node(),
     ));
 }
 
